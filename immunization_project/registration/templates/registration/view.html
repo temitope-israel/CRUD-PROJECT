@@ -1,0 +1,46 @@
+{% extends 'registration/base.html' %}
+
+{% block content %}
+<div class="col-sm-16">
+    <h4 class="text-center alert alert-info">SHOW REGISTRATION RECORD</h4>
+    {% if showrecords %}
+        <table class="table table-hover">
+            ..<thead>
+                <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Child's Name</th>
+                <th scope="col">Age</th>
+                <th scope="col">Date of Birth</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Mother's Name</th>
+                <th scope="col">Mother's Age</th>
+                <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for record in showrecords %}
+                <tr>
+                    <th scope="row">{{record.id}}</th>
+                    <td>{{record.child_name}}</td>
+                    <td>{{record.child_age}}</td>
+                    <td>{{record.child_dob}}</td>
+                    <td>{{record.child_gender}}</td>
+                    <td>{{record.mother_name}}</td>
+                    <td>{{record.mother_age}}</td>
+                    <td>
+                        <a href="{% url 'updatedata' record.id %}" class="btn btn-warning btn-sm">Edit</a>
+                        <form action="{% url 'deletedata' record.id %}" class="d-inline" method="post">
+                            {%csrf_token %}
+                            <input type="submit" class="btn btn-danger" value="Delete">
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <h4 class="text-center alert alert-warning">No Records Found</h4>
+    {% endif %}
+    <a href="{% url 'addtoregister' %}" class="btn btn-info">Back Home</a>
+</div>
+{% endblock content %}

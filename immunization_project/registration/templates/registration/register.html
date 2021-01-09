@@ -1,0 +1,21 @@
+{% extends 'registration/base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-sm-9">
+        <h4 class="text-center alert alert-info">Register For Immunization</h4>
+        <form action="" method="POST">
+            {%csrf_token %}
+            {{form.as_p}}
+            <div class="d-grid gap-2">
+                <input type="submit" class="btn btn-success btn-primary btn-lg" value="Register">
+              </div>
+            
+        </form>
+    </div>
+
+    <div class="col-sm-3">
+        <a href="{% url 'viewdata'%}" class="btn btn-info btn-lg btn-lg">CLICK TO VIEW RECORDS</a>
+    </div>
+</div>
+{% endblock content %}
